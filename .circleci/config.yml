@@ -15,14 +15,14 @@ jobs:
             - "~/.local"
           key: deps-{{ checksum "requirements.lock"}}
 
-test:
-  docker:
-    - image: circleci/python:3.8.1
-  steps: 
-    - checkout
-    - restore_cache:
+  test:
+    docker:
+      - image: circleci/python:3.8.1
+    steps: 
+      - checkout
+      - restore_cache:
         key: deps-{{ checksum "requirements.lock"}}
-    - run:
+      - run:
         command: |
           python3 -m unittest -v
 workflows:
